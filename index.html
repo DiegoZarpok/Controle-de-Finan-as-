@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Controle de Finanças Pessoais</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        /* Estilos gerais */
+        body {
+            background-color: #f8f9fa;
+            color: #212529;
+            font-family: Arial, sans-serif;
+        }
+
+        h1, h2 {
+            color: #212529;
+        }
+
+        .table {
+            background-color: #fff;
+            color: #212529;
+        }
+
+        .table th, .table td {
+            border-color: #dee2e6;
+        }
+
+        .btn {
+            font-size: 1rem;
+            padding: 0.5rem 1rem;
+        }
+
+        .form-control {
+            background-color: #fff;
+            color: #212529;
+            border: 1px solid #ced4da;
+        }
+
+        /* Estilos para modo escuro */
+        body.dark-mode {
+            background-color: #121212;
+            color: #f8f9fa;
+        }
+
+        body.dark-mode h1, body.dark-mode h2 {
+            color: #f8f9fa;
+        }
+
+        body.dark-mode .table {
+            background-color: #1e1e1e;
+            color: #f8f9fa;
+        }
+
+        body.dark-mode .form-control {
+            background-color: #333;
+            color: #f8f9fa;
+        }
+
+        body.dark-mode .btn {
+            background-color: #333;
+            color: #f8f9fa;
+        }
+
+        /* Modal estilos */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            align-items: center;
+            justify-content: center;
+            z-index: 1050;
+        }
+
+        .modal-content {
+            background: #fff;
+            padding: 1.5rem;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        body.dark-mode .modal-content {
+            background: #2c2c2c;
+            color: #f8f9fa;
+        }
+
+        .modal-footer {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .btn-danger {
+            background-color: #dc3545;
+        }
+
+        .btn-secondary {
+            background-color: #6c757d;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center">Controle de Finanças Pessoais</h1>
+        <form id="form" class="mb-4">
+            <div class="form-group">
+                <label for="descricao">Descrição</label>
+                <input type="text" class="form-control" id="descricao" required>
+            </div>
+            <div class="form-group">
+                <label for="valor">Valor</label>
+                <input type="text" class="form-control" id="valor" required>
+            </div>
+            <div class="form-group">
+                <label for="data">Data</label>
+                <input type="date" class="form-control" id="data" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Salvar</button>
+        </form>
+        <h2 class="text-center">Lista de Transações</h2>
+        <div class="table-responsive">
+            <table class="table table-bordered table-sm">
+                <thead>
+                    <tr>
+                        <th>Descrição</th>
+                        <th>Valor</th>
+                        <th>Data</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody id="transacoesTableBody"></tbody>
+            </table>
+        </div>
+        <div class="text-center mt-4">
+            <button id="toggleDarkMode" class="btn btn-secondary btn-lg">Alternar Modo Escuro</button>
+        </div>
+        <div id="saldo" class="text-center mt-3"></div>
+    </div>
+
+    <!-- Modal de confirmação -->
+    <div id="confirmDeleteModal" class="modal">
+        <div class="modal-content">
+            <h5>Confirmar Exclusão</h5>
+            <p>Tem certeza de que deseja excluir esta transação? Esta ação não pode ser desfeita.</p>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closeModal()">Cancelar</button>
+                <button class="btn btn-danger" id="confirmDeleteButton">Excluir</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script> <!-- Link para o arquivo JavaScript -->
+</body>
+</html>
